@@ -65,32 +65,27 @@ app.post("/api/auth/register", async (req, res) => {
   }
 });
 
-
-
 app.post("/api/auth/login", async (req, res) => {
   const { username, password } = req.body;
 
-  // check whether the username exists 
-try{  
-  const existingUser = await User.findOne({ username: username });
+  // check whether the username exists
+  try {
+    const existingUser = await User.findOne({ username: username });
 
-  if (!existingUser) {
-    return res.status(404).json({ message: "User not found" });
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    userPassword = existingUser.password;
+
+    if (userPassword !== password) {
+      return res.status(401).json({ message: "Invalid password" });
+    } else {
+      return res.status(200).json({ message: "User logged in successfully" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error logging in user", error });
   }
-
-  userPassword = existingUser.password;
-
-  if (userPassword !== password) {
-    return res.status(401).json({ message: "Invalid password" });
-  } else {
-    return res.status(200).json({ message: "User logged in successfully" });
-  }
-
-}
-catch(error){
-  res.status(500).json({ message: "Error logging in user", error });
-}
-
 });
 
 app.post("/api/auth/logout", (req, res) => {
@@ -99,12 +94,19 @@ app.post("/api/auth/logout", (req, res) => {
   res.status(200).json({ message: "User logged out successfully" });
 });
 
-app.post("/api/user/delete", (req, res) => {
+app.post("/api/user/delete", async (req, res) => {
   const { username } = req.body;
+  try {
+    await User.deleteOne({
+      username: username,
+    });
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting user", error });
+  }
 
   // here we would normally delete the user from the database
   // but for this example, we'll just return a success message
-  res.status(200).json({ message: `User ${username} deleted successfully` });
 });
 
 app.listen(PORT, () => {
