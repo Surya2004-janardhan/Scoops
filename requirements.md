@@ -1,148 +1,567 @@
-<!--    SCOOPS -->
+# SCOOPS - Product Requirements Document
 
-##SCOOPS
+> A social storytelling platform where users share AI-powered micro-stories with music
 
-###Description
--- SCOOPS WEB BASED APPLICATION  - USERS  accounts -  users can create accounts and log in to access the platform's features.
+---
 
--- each post is called a scoop 
--- each posts a story as POST along with  , title , story , music  using AI - users can create and share their stories using AI-generated content, allowing for creative and engaging storytelling.(limit of 120 words for story)
+## Glossary (Unique Platform Terminology)
 
--- users can also interact with other users' stories by liking, commenting, and sharing them, fostering a sense of community and engagement on the platform.
+| Term | What It Means | Why This Name |
+|------|---------------|---------------|
+| **Scoop** | A single story post | Like serving a scoop of ice cream - bite-sized and delightful |
+| **Cherry Top** | Trending/popular stories section | The cherry on top - the best of the best |
+| **Flavor** | Story category/theme/genre | Different flavors for different tastes |
+| **Bowl** | User's saved stories collection | Your personal bowl of favorite scoops |
+| **Sprinkles** | Likes on a story | Adding sweetness to someone's scoop |
+| **Swirl** | Share a story | Swirling flavors together, spreading the joy |
 
-<!-- top stories go into seperate section called breakers  -->
--- the platform will also feature a "breakers" section where the most popular and trending stories are showcased, allowing users to discover and engage with the best content on the platform.
+---
 
-users can save their own and other users stories to their profile for later viewing, creating a personalized collection of favorite stories and content.
+## What Is Scoops?
 
--- BUckets -  same alike stories are grouped together in buckets - others users can explore and discover stories based on themes, genres, or topics of interest, making it easier to find content that resonates with them.
+Scoops is a web app where people share short stories (max 120 words) enhanced by AI. Think of it as Twitter meets creative writing, with a musical twist.
 
-##Techincal overiview and tech stack reqs 
--- The application will be built using a modern web development stack, including:
-- Frontend: React.js for building the user interface and providing a responsive and interactive experience.
-- Backend: Node.js with Express.js for handling server-side logic, API endpoints, and database interactions.
-- Database: MongoDB for storing user accounts, posts, comments, and other relevant data.
-- Authentication: JWT (JSON Web Tokens) for secure user authentication and session management.
-- AI Integration: OpenAI's GPT-3 or similar AI models for generating content based on user input.
-- Hosting: The application can be hosted on platforms like Heroku, AWS, or DigitalOcean for scalability and reliability.
-- Version Control: Git and GitHub for code management and collaboration among developers.
-- Testing: Jest and React Testing Library for frontend testing, and Mocha or Chai for backend testing to ensure the application is robust and bug-free.
-- CI/CD: Implementing Continuous Integration and Continuous Deployment pipelines using tools like GitHub Actions  to automate testing and deployment processes.
+### The Core Idea
 
+1. **You write a story prompt** - give us the vibe, theme, or starting idea
+2. **AI helps you craft it** - generates or enhances your story
+3. **Add music** - pick a track that sets the mood
+4. **Share your Scoop** - publish it for the world to see
+5. **Engage with others** - like (sprinkle), comment, share (swirl), and save to your bowl
 
+---
 
-##workflow and development process
-1. **Planning and Design**: Define the project requirements, create wireframes and mockups
-2. **Frontend Development**: Build the user interface using React.js, implementing features such as user registration, login, post creation, and interaction with stories.
-3. **Backend Development**: Set up the server using Node.js and Express.js, create API endpoints for handling user authentication, post management, and interactions.
-4. **Database Integration**: Design the database schema and implement MongoDB to store user data, posts, comments, and other relevant information.
-5. **AI Integration**: Integrate AI models for content generation, allowing users to create stories based on their input and preferences.
-6. **Testing**: Conduct thorough testing of both frontend and backend components to ensure functionality, performance, and security.
-7. **Deployment**: Deploy the application to a hosting platform, ensuring it is accessible to users and can handle expected traffic.
-8. **Maintenance and Updates**: Continuously monitor the application for issues, gather user feedback, and implement updates and improvements based on user needs and technological advancements.
+## Key Features
 
+### 1. User Accounts
+- Sign up with email and password
+- Log in securely with JWT tokens
+- Personal profile page showing your scoops and saved stories
 
-##workflow diagram from user side
-```mermaidgraph TD
-    A[User Registration/Login] --> B[Create Post (Scoop)]
-    B --> C[AI Content Generation]
-    C --> D[Post Story with Title, Story, Music]
-    D --> E[Interact with Other Stories (Like, Comment, Share)]
-    E --> F[View Breakers Section]
-    F --> G[Save Stories to Profile]
-    H --> I[Discover and Engage with Stories]
-``` 
+### 2. Creating Scoops (Posts)
+- **Title**: Catchy headline for your story
+- **Story**: AI-assisted content (max 120 words)
+- **Music**: Background track URL or selection
+- Each scoop gets a unique ID for sharing
 
-##apis required
-1. **User Authentication API**: Endpoints for user registration, login, and authentication using
-    JWT.
-2. **Post Management API**: Endpoints for creating, retrieving, updating, and deleting posts (scoops), including AI content generation.
-3. **Interaction API**: Endpoints for liking, commenting, and sharing stories, as well as saving stories to user profiles.
-4. **Breakers API**: Endpoint for retrieving the most popular and trending stories for the
-    "breakers" section.
-5. **Buckets API**: Endpoint for retrieving stories based on themes, genres, or topics for the "buckets" section.
-6. **User Profile API**: Endpoints for managing user profiles, including retrieving saved stories
-    and user information.
-7. **Search API**: Endpoint for searching stories based on keywords, themes, or user preferences.
-8. **Notification API**: Endpoints for sending notifications to users about interactions with their stories, new content in their buckets, or updates from the platform.
-9. **Analytics API**: Endpoints for tracking user engagement, post performance, and other relevant metrics to help improve the platform and provide insights to users.
+### 3. Social Interactions
+- **Sprinkles** (Likes): Show love for a story
+- **Comments**: Share your thoughts
+- **Swirl** (Share): Spread stories to others
+- **Save to Bowl**: Bookmark stories for later
 
-<!-- now raw endpoints dummy for now -->
-- POST /api/auth/register - Register a new user
-- POST /api/auth/login - Log in a user and return a JWT token
-- POST /api/posts - Create a new post (scoop) with AI content generation
-- GET /api/posts - Retrieve all posts (scoops)
-- GET /api/posts/:id - Retrieve a specific post by ID
-- PUT /api/posts/:id - Update a specific post by ID
-- DELETE /api/posts/:id - Delete a specific post by ID
-- POST /api/interactions/like - Like a post
-- POST /api/interactions/comment - Comment on a post
-- POST /api/interactions/share - Share a post
-- POST /api/interactions/save - Save a post to user profile
-- GET /api/breakers - Retrieve the most popular and trending stories for the "breakers" section
-- GET /api/buckets - Retrieve stories based on themes, genres, or topics for the "buckets" section
-- GET /api/user/profile - Retrieve user profile information and saved stories
-- POST /api/search - Search for stories based on keywords, themes,
-- GET /api/search - Search for users based on username 
-- POST /api/notifications - Send notifications to users about interactions, new content, or updates
-- GET /api/analytics - Retrieve analytics data for user engagement and post performance
-- DELETE /api/user/profile - Delete user profile and associated data
+### 4. Cherry Top (Trending Section)
+- Displays the hottest scoops based on:
+  - Number of sprinkles (likes)
+  - Comment activity
+  - Share count
+  - Recency factor
+- Updates in real-time or near real-time
 
+### 5. Flavors (Categories/Buckets)
+- Stories are grouped by theme/genre
+- Examples: Romance, Horror, Sci-Fi, Humor, Drama, Mystery
+- Users can browse by flavor to find stories they'll enjoy
 
-##database schemas for all models 
+### 6. Search & Discovery
+- Search stories by keywords
+- Search users by username
+- Filter by flavor (category)
 
-#user model 
+### 7. Notifications
+- Get notified when someone:
+  - Sprinkles your scoop
+  - Comments on your story
+  - Swirls your content
+
+### 8. Analytics (For Users)
+- See how your scoops are performing
+- Track engagement over time
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| **Frontend** | React.js | Interactive user interface |
+| **Backend** | Node.js + Express.js | API server and business logic |
+| **Database** | MongoDB | Store users, scoops, interactions |
+| **Auth** | JWT (JSON Web Tokens) | Secure login sessions |
+| **AI** | OpenAI GPT API | Story generation and enhancement |
+| **Hosting** | Heroku / AWS / DigitalOcean | Production deployment |
+| **Version Control** | Git + GitHub | Code management |
+| **Testing** | Jest, React Testing Library, Mocha | Automated tests |
+| **CI/CD** | GitHub Actions | Automated builds and deploys |
+
+---
+
+## Development Workflow
+
+```
+1. Planning     → Define features, create designs
+2. Backend      → Build APIs and database
+3. Frontend     → Build UI components
+4. AI Setup     → Integrate GPT for story generation
+5. Testing      → Write and run tests
+6. Deploy       → Launch to production
+7. Iterate      → Gather feedback, improve
+```
+
+---
+
+## User Journey Flow
+
+```mermaid
+graph TD
+    A[Sign Up / Log In] --> B[Browse Cherry Top & Flavors]
+    B --> C{Want to Create?}
+    C -->|Yes| D[Write Story Prompt]
+    D --> E[AI Generates Content]
+    E --> F[Add Title & Music]
+    F --> G[Publish Scoop]
+    C -->|No| H[Browse Stories]
+    H --> I[Read a Scoop]
+    I --> J{Like It?}
+    J -->|Yes| K[Sprinkle / Comment / Swirl]
+    J -->|No| H
+    K --> L[Save to Bowl?]
+    L --> H
+    G --> H
+```
+
+---
+
+## API Endpoints
+
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Create new account |
+| POST | `/api/auth/login` | Log in, get JWT token |
+| POST | `/api/auth/logout` | Invalidate session |
+| GET | `/api/auth/me` | Get current user info |
+
+### Scoops (Posts)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/scoops` | Create new scoop (with AI) |
+| GET | `/api/scoops` | Get all scoops (paginated) |
+| GET | `/api/scoops/:id` | Get single scoop by ID |
+| PUT | `/api/scoops/:id` | Update your scoop |
+| DELETE | `/api/scoops/:id` | Delete your scoop |
+
+### Interactions
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/scoops/:id/sprinkle` | Like a scoop |
+| DELETE | `/api/scoops/:id/sprinkle` | Unlike a scoop |
+| POST | `/api/scoops/:id/comments` | Add comment |
+| GET | `/api/scoops/:id/comments` | Get comments |
+| DELETE | `/api/comments/:id` | Delete your comment |
+| POST | `/api/scoops/:id/swirl` | Share a scoop |
+
+### Cherry Top (Trending)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/cherry-top` | Get trending scoops |
+| GET | `/api/cherry-top/daily` | Today's top scoops |
+| GET | `/api/cherry-top/weekly` | This week's top scoops |
+
+### Flavors (Categories)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/flavors` | List all flavors |
+| GET | `/api/flavors/:slug/scoops` | Get scoops by flavor |
+| POST | `/api/flavors` | Create flavor (admin) |
+
+### User Profile & Bowl
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/users/:username` | Get user profile |
+| GET | `/api/users/:username/scoops` | Get user's scoops |
+| GET | `/api/me/bowl` | Get saved scoops |
+| POST | `/api/me/bowl/:scoopId` | Save scoop to bowl |
+| DELETE | `/api/me/bowl/:scoopId` | Remove from bowl |
+| PUT | `/api/me/profile` | Update profile |
+| DELETE | `/api/me/account` | Delete account |
+
+### Search
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/search/scoops?q=` | Search stories |
+| GET | `/api/search/users?q=` | Search users |
+
+### Notifications
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/notifications` | Get user notifications |
+| PUT | `/api/notifications/:id/read` | Mark as read |
+| PUT | `/api/notifications/read-all` | Mark all as read |
+
+### Analytics
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/me/analytics` | Get your engagement stats |
+
+---
+
+## Database Schemas
+
+### User Model
 ```javascript
 const mongoose = require('mongoose');
+
 const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-    createdAt: { type: Date, default: Date.now }
+    username: { 
+        type: String, 
+        required: true, 
+        unique: true,
+        minlength: 3,
+        maxlength: 30
+    },
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true 
+    },
+    password: { 
+        type: String, 
+        required: true 
+    },
+    displayName: {
+        type: String,
+        maxlength: 50
+    },
+    bio: {
+        type: String,
+        maxlength: 160
+    },
+    avatar: {
+        type: String  // URL to profile image
+    },
+    bowl: [{  // Saved scoops
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Scoop' 
+    }],
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    }
 });
 
 module.exports = mongoose.model('User', UserSchema);
 ```
 
-#post model 
+### Scoop Model (Post)
 ```javascript
 const mongoose = require('mongoose');
-const PostSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    story: { type: String, required: true },
-    music: { type: String },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
+
+const ScoopSchema = new mongoose.Schema({
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    title: { 
+        type: String, 
+        required: true,
+        maxlength: 100 
+    },
+    story: { 
+        type: String, 
+        required: true,
+        maxlength: 700  // ~120 words
+    },
+    music: { 
+        type: String  // URL to music track
+    },
+    flavor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Flavor'
+    },
+    sprinkleCount: {
+        type: Number,
+        default: 0
+    },
+    commentCount: {
+        type: Number,
+        default: 0
+    },
+    swirlCount: {
+        type: Number,
+        default: 0
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    },
+    updatedAt: { 
+        type: Date, 
+        default: Date.now 
+    }
 });
 
-module.exports = mongoose.model('Post', PostSchema);
+module.exports = mongoose.model('Scoop', ScoopSchema);
 ```
 
-#interaction model 
+### Interaction Model
 ```javascript
 const mongoose = require('mongoose');
+
 const InteractionSchema = new mongoose.Schema({
-    postId: { type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: true },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    type: { type: String, enum: ['like', 'comment', 'share'], required: true },
-    commentText: { type: String },
-    createdAt: { type: Date, default: Date.now }
+    scoop: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Scoop', 
+        required: true 
+    },
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
+    },
+    type: { 
+        type: String, 
+        enum: ['sprinkle', 'comment', 'swirl'], 
+        required: true 
+    },
+    commentText: { 
+        type: String,
+        maxlength: 500
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    }
 });
+
+// Prevent duplicate sprinkles
+InteractionSchema.index({ scoop: 1, user: 1, type: 1 }, { unique: true });
 
 module.exports = mongoose.model('Interaction', InteractionSchema);
 ```
 
-#bucket model 
+### Flavor Model (Category)
 ```javascript
 const mongoose = require('mongoose');
-const BucketSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String },
-    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
-    createdAt: { type: Date, default: Date.now }
+
+const FlavorSchema = new mongoose.Schema({
+    name: { 
+        type: String, 
+        required: true,
+        unique: true
+    },
+    slug: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    description: { 
+        type: String,
+        maxlength: 200
+    },
+    color: {
+        type: String  // Hex color for UI
+    },
+    icon: {
+        type: String  // Emoji or icon name
+    },
+    scoopCount: {
+        type: Number,
+        default: 0
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
+    }
 });
 
-module.exports = mongoose.model('Bucket', BucketSchema);
+module.exports = mongoose.model('Flavor', FlavorSchema);
 ```
+
+### Notification Model
+```javascript
+const mongoose = require('mongoose');
+
+const NotificationSchema = new mongoose.Schema({
+    recipient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    type: {
+        type: String,
+        enum: ['sprinkle', 'comment', 'swirl', 'follow', 'system'],
+        required: true
+    },
+    scoop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Scoop'
+    },
+    message: {
+        type: String
+    },
+    read: {
+        type: Boolean,
+        default: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+module.exports = mongoose.model('Notification', NotificationSchema);
+```
+
+---
+
+## Development Task Checklist
+
+### Phase 1: Project Setup
+- [ ] Initialize Node.js project with Express
+- [ ] Set up MongoDB connection
+- [ ] Configure environment variables (.env)
+- [ ] Set up project folder structure
+- [ ] Install core dependencies (express, mongoose, jsonwebtoken, bcrypt, cors)
+- [ ] Set up React frontend with Create React App or Vite
+- [ ] Configure ESLint and Prettier
+
+### Phase 2: Authentication System
+- [ ] Create User model with validation
+- [ ] Build registration endpoint (POST /api/auth/register)
+- [ ] Build login endpoint (POST /api/auth/login)
+- [ ] Implement JWT token generation
+- [ ] Create auth middleware for protected routes
+- [ ] Build password hashing with bcrypt
+- [ ] Add email validation
+- [ ] Create frontend login page
+- [ ] Create frontend registration page
+- [ ] Implement token storage (localStorage/cookies)
+
+### Phase 3: Scoop (Post) Management
+- [ ] Create Scoop model with validation
+- [ ] Build create scoop endpoint (POST /api/scoops)
+- [ ] Integrate OpenAI API for story generation
+- [ ] Build get all scoops endpoint with pagination
+- [ ] Build get single scoop endpoint
+- [ ] Build update scoop endpoint
+- [ ] Build delete scoop endpoint
+- [ ] Add 120-word limit validation
+- [ ] Create frontend scoop creation form
+- [ ] Create frontend scoop display component
+- [ ] Create frontend scoop list/feed view
+
+### Phase 4: Interactions (Sprinkles, Comments, Swirls)
+- [ ] Create Interaction model
+- [ ] Build sprinkle (like) endpoint
+- [ ] Build un-sprinkle endpoint
+- [ ] Build add comment endpoint
+- [ ] Build get comments endpoint
+- [ ] Build delete comment endpoint
+- [ ] Build swirl (share) endpoint
+- [ ] Update scoop counts on interactions
+- [ ] Create frontend like button component
+- [ ] Create frontend comment section
+- [ ] Create frontend share functionality
+
+### Phase 5: Cherry Top (Trending)
+- [ ] Build trending algorithm (likes + comments + recency)
+- [ ] Build cherry-top endpoint
+- [ ] Add daily/weekly filters
+- [ ] Create frontend trending section
+- [ ] Add real-time or periodic updates
+
+### Phase 6: Flavors (Categories)
+- [ ] Create Flavor model
+- [ ] Build get all flavors endpoint
+- [ ] Build get scoops by flavor endpoint
+- [ ] Seed initial flavors (Romance, Horror, Sci-Fi, etc.)
+- [ ] Create frontend flavor selector
+- [ ] Create frontend flavor browse page
+
+### Phase 7: User Profiles & Bowl
+- [ ] Build get user profile endpoint
+- [ ] Build get user's scoops endpoint
+- [ ] Build save to bowl endpoint
+- [ ] Build remove from bowl endpoint
+- [ ] Build update profile endpoint
+- [ ] Build delete account endpoint
+- [ ] Create frontend profile page
+- [ ] Create frontend bowl (saved) page
+- [ ] Add avatar upload functionality
+
+### Phase 8: Search & Discovery
+- [ ] Build search scoops endpoint
+- [ ] Build search users endpoint
+- [ ] Add search indexing for performance
+- [ ] Create frontend search bar
+- [ ] Create frontend search results page
+
+### Phase 9: Notifications
+- [ ] Create Notification model
+- [ ] Build notification creation logic
+- [ ] Build get notifications endpoint
+- [ ] Build mark as read endpoints
+- [ ] Create frontend notification dropdown
+- [ ] Add real-time notifications (WebSocket/polling)
+
+### Phase 10: Testing
+- [ ] Write unit tests for auth routes
+- [ ] Write unit tests for scoop routes
+- [ ] Write unit tests for interaction routes
+- [ ] Write integration tests for API
+- [ ] Write frontend component tests
+- [ ] Set up test database
+- [ ] Achieve 70%+ code coverage
+
+### Phase 11: Deployment
+- [ ] Set up production MongoDB (Atlas)
+- [ ] Configure production environment variables
+- [ ] Set up Heroku/AWS/DigitalOcean
+- [ ] Configure CI/CD with GitHub Actions
+- [ ] Set up SSL certificate
+- [ ] Configure CORS for production
+- [ ] Run production smoke tests
+
+### Phase 12: Polish & Launch
+- [ ] Add loading states and error handling
+- [ ] Implement responsive design
+- [ ] Add accessibility features (ARIA labels)
+- [ ] Optimize images and assets
+- [ ] Add rate limiting
+- [ ] Set up error logging (Sentry)
+- [ ] Write user documentation
+- [ ] Create landing page
+- [ ] Launch!
+
+---
+
+## Non-Functional Requirements
+
+| Requirement | Target |
+|-------------|--------|
+| Page load time | < 3 seconds |
+| API response time | < 500ms |
+| Uptime | 99% |
+| Mobile responsive | Yes |
+| Browser support | Chrome, Firefox, Safari, Edge (last 2 versions) |
+| Security | HTTPS, password hashing, JWT expiry |
+
+---
+
+## Future Enhancements (Post-MVP)
+
+- [ ] OAuth login (Google, GitHub)
+- [ ] Music integration (Spotify API)
+- [ ] Story audio narration (text-to-speech)
+- [ ] User following system
+- [ ] Direct messaging
+- [ ] Story collaborations
+- [ ] Premium features / monetization
+- [ ] Mobile app (React Native)
 
