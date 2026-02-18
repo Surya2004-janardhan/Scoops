@@ -8,12 +8,12 @@
 
 | Term | What It Means | Why This Name |
 |------|---------------|---------------|
-| **Scoop** | A single story post | Like serving a scoop of ice cream - bite-sized and delightful |
-| **Cherry Top** | Trending/popular stories section | The cherry on top - the best of the best |
-| **Flavor** | Story category/theme/genre | Different flavors for different tastes |
-| **Bowl** | User's saved stories collection | Your personal bowl of favorite scoops |
-| **Sprinkles** | Likes on a story | Adding sweetness to someone's scoop |
-| **Swirl** | Share a story | Swirling flavors together, spreading the joy |
+| **Spark** | A single story post | A creative spark, the beginning of something big |
+| **Blaze** | Trending/popular stories section | Sparks that caught fire and are burning bright |
+| **Flame** | Story category/theme/genre | Different flames for different moods |
+| **Torch** | User's saved stories collection | Keeping the flame alive for later |
+| **Kindle** | Likes on a story | Fueling someone's creative fire |
+| **Spread** | Share a story | Spreading the fire to others |
 
 ---
 
@@ -26,8 +26,8 @@ Scoops is a web app where people share short stories (max 120 words) enhanced by
 1. **You write a story prompt** - give us the vibe, theme, or starting idea
 2. **AI helps you craft it** - generates or enhances your story
 3. **Add music** - pick a track that sets the mood
-4. **Share your Scoop** - publish it for the world to see
-5. **Engage with others** - like (sprinkle), comment, share (swirl), and save to your bowl
+4. **Share your Spark** - publish it for the world to see
+5. **Engage with others** - like (kindle), comment, share (spread), and save to your torch
 
 ---
 
@@ -36,32 +36,32 @@ Scoops is a web app where people share short stories (max 120 words) enhanced by
 ### 1. User Accounts
 - Sign up with email and password
 - Log in securely with JWT tokens
-- Personal profile page showing your scoops and saved stories
+- Personal profile page showing your sparks and saved stories
 
-### 2. Creating Scoops (Posts)
+### 2. Creating Sparks (Posts)
 - **Title**: Catchy headline for your story
 - **Story**: AI-assisted content (max 120 words)
 - **Music**: Background track URL or selection
-- Each scoop gets a unique ID for sharing
+- Each spark gets a unique ID for sharing
 
 ### 3. Social Interactions
-- **Sprinkles** (Likes): Show love for a story
+- **Kindle** (Likes): Show love for a story
 - **Comments**: Share your thoughts
-- **Swirl** (Share): Spread stories to others
-- **Save to Bowl**: Bookmark stories for later
+- **Spread** (Share): Spread stories to others
+- **Save to Torch**: Bookmark stories for later
 
-### 4. Cherry Top (Trending Section)
-- Displays the hottest scoops based on:
-  - Number of sprinkles (likes)
+### 4. Blaze (Trending Section)
+- Displays the hottest sparks based on:
+  - Number of kindles (likes)
   - Comment activity
   - Share count
   - Recency factor
 - Updates in real-time or near real-time
 
-### 5. Flavors (Categories/Buckets)
+### 5. Flames (Categories)
 - Stories are grouped by theme/genre
 - Examples: Romance, Horror, Sci-Fi, Humor, Drama, Mystery
-- Users can browse by flavor to find stories they'll enjoy
+- Users can browse by flame to find stories they'll enjoy
 
 ### 6. Search & Discovery
 - Search stories by keywords
@@ -70,12 +70,12 @@ Scoops is a web app where people share short stories (max 120 words) enhanced by
 
 ### 7. Notifications
 - Get notified when someone:
-  - Sprinkles your scoop
+  - Kindles your spark
   - Comments on your story
-  - Swirls your content
+  - Spreads your content
 
 ### 8. Analytics (For Users)
-- See how your scoops are performing
+- See how your sparks are performing
 - Track engagement over time
 
 ---
@@ -114,18 +114,18 @@ Scoops is a web app where people share short stories (max 120 words) enhanced by
 
 ```mermaid
 graph TD
-    A[Sign Up / Log In] --> B[Browse Cherry Top & Flavors]
+    A[Sign Up / Log In] --> B[Browse Blaze & Flames]
     B --> C{Want to Create?}
     C -->|Yes| D[Write Story Prompt]
     D --> E[AI Generates Content]
     E --> F[Add Title & Music]
-    F --> G[Publish Scoop]
+    F --> G[Publish Spark]
     C -->|No| H[Browse Stories]
-    H --> I[Read a Scoop]
+    H --> I[Read a Spark]
     I --> J{Like It?}
-    J -->|Yes| K[Sprinkle / Comment / Swirl]
+    J -->|Yes| K[Kindle / Comment / Spread]
     J -->|No| H
-    K --> L[Save to Bowl?]
+    K --> L[Save to Torch?]
     L --> H
     G --> H
 ```
@@ -142,54 +142,54 @@ graph TD
 | POST | `/api/auth/logout` | Invalidate session |
 | GET | `/api/auth/me` | Get current user info |
 
-### Scoops (Posts)
+### Sparks (Posts)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/scoops` | Create new scoop (with AI) |
-| GET | `/api/scoops` | Get all scoops (paginated) |
-| GET | `/api/scoops/:id` | Get single scoop by ID |
-| PUT | `/api/scoops/:id` | Update your scoop |
-| DELETE | `/api/scoops/:id` | Delete your scoop |
+| POST | `/api/sparks` | Create new spark (with AI) |
+| GET | `/api/sparks` | Get all sparks (paginated) |
+| GET | `/api/sparks/:id` | Get single spark by ID |
+| PUT | `/api/sparks/:id` | Update your spark |
+| DELETE | `/api/sparks/:id` | Delete your spark |
 
 ### Interactions
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/scoops/:id/sprinkle` | Like a scoop |
-| DELETE | `/api/scoops/:id/sprinkle` | Unlike a scoop |
-| POST | `/api/scoops/:id/comments` | Add comment |
-| GET | `/api/scoops/:id/comments` | Get comments |
+| POST | `/api/sparks/:id/kindle` | Like a spark |
+| DELETE | `/api/sparks/:id/kindle` | Unlike a spark |
+| POST | `/api/sparks/:id/comments` | Add comment |
+| GET | `/api/sparks/:id/comments` | Get comments |
 | DELETE | `/api/comments/:id` | Delete your comment |
-| POST | `/api/scoops/:id/swirl` | Share a scoop |
+| POST | `/api/sparks/:id/spread` | Share a spark |
 
-### Cherry Top (Trending)
+### Blaze (Trending)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/cherry-top` | Get trending scoops |
-| GET | `/api/cherry-top/daily` | Today's top scoops |
-| GET | `/api/cherry-top/weekly` | This week's top scoops |
+| GET | `/api/blaze` | Get trending sparks |
+| GET | `/api/blaze/daily` | Today's top sparks |
+| GET | `/api/blaze/weekly` | This week's top sparks |
 
-### Flavors (Categories)
+### Flames (Categories)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/flavors` | List all flavors |
-| GET | `/api/flavors/:slug/scoops` | Get scoops by flavor |
-| POST | `/api/flavors` | Create flavor (admin) |
+| GET | `/api/flames` | List all flames |
+| GET | `/api/flames/:slug/sparks` | Get sparks by flame |
+| POST | `/api/flames` | Create flame (admin) |
 
-### User Profile & Bowl
+### User Profile & Torch
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/users/:username` | Get user profile |
-| GET | `/api/users/:username/scoops` | Get user's scoops |
-| GET | `/api/me/bowl` | Get saved scoops |
-| POST | `/api/me/bowl/:scoopId` | Save scoop to bowl |
-| DELETE | `/api/me/bowl/:scoopId` | Remove from bowl |
+| GET | `/api/users/:username/sparks` | Get user's sparks |
+| GET | `/api/me/torch` | Get saved sparks |
+| POST | `/api/me/torch/:sparkId` | Save spark to torch |
+| DELETE | `/api/me/torch/:sparkId` | Remove from torch |
 | PUT | `/api/me/profile` | Update profile |
 | DELETE | `/api/me/account` | Delete account |
 
 ### Search
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/search/scoops?q=` | Search stories |
+| GET | `/api/search/sparks?q=` | Search stories |
 | GET | `/api/search/users?q=` | Search users |
 
 ### Notifications
@@ -240,9 +240,9 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: String  // URL to profile image
     },
-    bowl: [{  // Saved scoops
+    torch: [{  // Saved sparks
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Scoop' 
+        ref: 'Spark' 
     }],
     createdAt: { 
         type: Date, 
@@ -253,11 +253,11 @@ const UserSchema = new mongoose.Schema({
 module.exports = mongoose.model('User', UserSchema);
 ```
 
-### Scoop Model (Post)
+### Spark Model (Post)
 ```javascript
 const mongoose = require('mongoose');
 
-const ScoopSchema = new mongoose.Schema({
+const SparkSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -276,11 +276,11 @@ const ScoopSchema = new mongoose.Schema({
     music: { 
         type: String  // URL to music track
     },
-    flavor: {
+    flame: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Flavor'
+        ref: 'Flame'
     },
-    sprinkleCount: {
+    kindleCount: {
         type: Number,
         default: 0
     },
@@ -288,7 +288,7 @@ const ScoopSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    swirlCount: {
+    spreadCount: {
         type: Number,
         default: 0
     },
@@ -302,7 +302,7 @@ const ScoopSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Scoop', ScoopSchema);
+module.exports = mongoose.model('Spark', SparkSchema);
 ```
 
 ### Interaction Model
@@ -310,9 +310,9 @@ module.exports = mongoose.model('Scoop', ScoopSchema);
 const mongoose = require('mongoose');
 
 const InteractionSchema = new mongoose.Schema({
-    scoop: { 
+    spark: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Scoop', 
+        ref: 'Spark', 
         required: true 
     },
     user: { 
@@ -322,7 +322,7 @@ const InteractionSchema = new mongoose.Schema({
     },
     type: { 
         type: String, 
-        enum: ['sprinkle', 'comment', 'swirl'], 
+        enum: ['kindle', 'comment', 'spread'], 
         required: true 
     },
     commentText: { 
@@ -335,17 +335,17 @@ const InteractionSchema = new mongoose.Schema({
     }
 });
 
-// Prevent duplicate sprinkles
-InteractionSchema.index({ scoop: 1, user: 1, type: 1 }, { unique: true });
+// Prevent duplicate kindles
+InteractionSchema.index({ spark: 1, user: 1, type: 1 }, { unique: true });
 
 module.exports = mongoose.model('Interaction', InteractionSchema);
 ```
 
-### Flavor Model (Category)
+### Flame Model (Category)
 ```javascript
 const mongoose = require('mongoose');
 
-const FlavorSchema = new mongoose.Schema({
+const FlameSchema = new mongoose.Schema({
     name: { 
         type: String, 
         required: true,
@@ -366,7 +366,7 @@ const FlavorSchema = new mongoose.Schema({
     icon: {
         type: String  // Emoji or icon name
     },
-    scoopCount: {
+    sparkCount: {
         type: Number,
         default: 0
     },
@@ -376,7 +376,7 @@ const FlavorSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Flavor', FlavorSchema);
+module.exports = mongoose.model('Flame', FlameSchema);
 ```
 
 ### Notification Model
@@ -395,12 +395,12 @@ const NotificationSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['sprinkle', 'comment', 'swirl', 'follow', 'system'],
+        enum: ['kindle', 'comment', 'spread', 'follow', 'system'],
         required: true
     },
-    scoop: {
+    spark: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Scoop'
+        ref: 'Spark'
     },
     message: {
         type: String
@@ -443,60 +443,60 @@ module.exports = mongoose.model('Notification', NotificationSchema);
 - [ ] Create frontend registration page
 - [ ] Implement token storage (localStorage/cookies)
 
-### Phase 3: Scoop (Post) Management
-- [ ] Create Scoop model with validation
-- [ ] Build create scoop endpoint (POST /api/scoops)
+### Phase 3: Spark (Post) Management
+- [ ] Create Spark model with validation
+- [ ] Build create spark endpoint (POST /api/sparks)
 - [ ] Integrate OpenAI API for story generation
-- [ ] Build get all scoops endpoint with pagination
-- [ ] Build get single scoop endpoint
-- [ ] Build update scoop endpoint
-- [ ] Build delete scoop endpoint
+- [ ] Build get all sparks endpoint with pagination
+- [ ] Build get single spark endpoint
+- [ ] Build update spark endpoint
+- [ ] Build delete spark endpoint
 - [ ] Add 120-word limit validation
-- [ ] Create frontend scoop creation form
-- [ ] Create frontend scoop display component
-- [ ] Create frontend scoop list/feed view
+- [ ] Create frontend spark creation form
+- [ ] Create frontend spark display component
+- [ ] Create frontend spark list/feed view
 
-### Phase 4: Interactions (Sprinkles, Comments, Swirls)
+### Phase 4: Interactions (Kindles, Comments, Spreads)
 - [ ] Create Interaction model
-- [ ] Build sprinkle (like) endpoint
-- [ ] Build un-sprinkle endpoint
+- [ ] Build kindle (like) endpoint
+- [ ] Build un-kindle endpoint
 - [ ] Build add comment endpoint
 - [ ] Build get comments endpoint
 - [ ] Build delete comment endpoint
-- [ ] Build swirl (share) endpoint
-- [ ] Update scoop counts on interactions
-- [ ] Create frontend like button component
+- [ ] Build spread (share) endpoint
+- [ ] Update spark counts on interactions
+- [ ] Create frontend kindle button component
 - [ ] Create frontend comment section
-- [ ] Create frontend share functionality
+- [ ] Create frontend spread functionality
 
-### Phase 5: Cherry Top (Trending)
-- [ ] Build trending algorithm (likes + comments + recency)
-- [ ] Build cherry-top endpoint
+### Phase 5: Blaze (Trending)
+- [ ] Build trending algorithm (kindles + comments + recency)
+- [ ] Build blaze endpoint
 - [ ] Add daily/weekly filters
 - [ ] Create frontend trending section
 - [ ] Add real-time or periodic updates
 
-### Phase 6: Flavors (Categories)
-- [ ] Create Flavor model
-- [ ] Build get all flavors endpoint
-- [ ] Build get scoops by flavor endpoint
-- [ ] Seed initial flavors (Romance, Horror, Sci-Fi, etc.)
-- [ ] Create frontend flavor selector
-- [ ] Create frontend flavor browse page
+### Phase 6: Flames (Categories)
+- [ ] Create Flame model
+- [ ] Build get all flames endpoint
+- [ ] Build get sparks by flame endpoint
+- [ ] Seed initial flames (Romance, Horror, Sci-Fi, etc.)
+- [ ] Create frontend flame selector
+- [ ] Create frontend flame browse page
 
-### Phase 7: User Profiles & Bowl
+### Phase 7: User Profiles & Torch
 - [ ] Build get user profile endpoint
-- [ ] Build get user's scoops endpoint
-- [ ] Build save to bowl endpoint
-- [ ] Build remove from bowl endpoint
+- [ ] Build get user's sparks endpoint
+- [ ] Build save to torch endpoint
+- [ ] Build remove from torch endpoint
 - [ ] Build update profile endpoint
 - [ ] Build delete account endpoint
 - [ ] Create frontend profile page
-- [ ] Create frontend bowl (saved) page
+- [ ] Create frontend torch (saved) page
 - [ ] Add avatar upload functionality
 
 ### Phase 8: Search & Discovery
-- [ ] Build search scoops endpoint
+- [ ] Build search sparks endpoint
 - [ ] Build search users endpoint
 - [ ] Add search indexing for performance
 - [ ] Create frontend search bar
@@ -512,7 +512,7 @@ module.exports = mongoose.model('Notification', NotificationSchema);
 
 ### Phase 10: Testing
 - [ ] Write unit tests for auth routes
-- [ ] Write unit tests for scoop routes
+- [ ] Write unit tests for spark routes
 - [ ] Write unit tests for interaction routes
 - [ ] Write integration tests for API
 - [ ] Write frontend component tests
