@@ -1,6 +1,6 @@
-// SAI BABU HW
 const mongoose = require('mongoose');
-
+// linked with the post model to get the post details of highlighted text. 
+//linked with the user model to get the user details of highlighted text. 
 const highlightSchema = new mongoose.Schema({
     postId: {
         type: mongoose.Schema.Types.ObjectId,
