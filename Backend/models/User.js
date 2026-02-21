@@ -1,4 +1,5 @@
 // username , psw , email 
+// create new branches each one password sai babu min = 8 , mani min = 10
 
 const mongoose = require('mongoose');
 
