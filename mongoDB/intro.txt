@@ -1,0 +1,154 @@
+MONGODB 
+only writing short points max word count per line is 10 words
+
+- NoSQL database, document-oriented
+- Uses BSON format for data storage
+
+{ 
+
+    name : 
+    age : 
+    address :
+}
+- Schema-less, flexible data model
+- High scalability and performance
+
+
+similarities to sql 
+- Both are databases for storing and managing data
+- Support CRUD operations (Create, Read, Update, Delete)
+- Use query languages for data manipulation
+- Can be used for various applications and industries
+
+disimilarities to sql
+- MongoDB is NoSQL, SQL databases are relational
+- MongoDB uses BSON, SQL databases use tables and rows
+- MongoDB is schema-less, SQL databases require a defined schema
+- MongoDB is designed for horizontal scaling, SQL databases often scale vertically
+
+applications of mongodb
+- Web applications
+- Mobile applications
+- Real-time analytics
+- Content management systems
+
+specific use cases by taking real time applications social media platforms
+
+- User profiles and posts storage coz of flexible schema
+- Real-time analytics for user engagement and trends
+- Content management for multimedia and user-generated content
+- High scalability to handle large user base and traffic
+
+why cant we use sql for social media platforms
+- SQL databases may struggle with the high volume of unstructured data
+- Scaling SQL databases can be more complex and costly
+- SQL databases may not provide the same level of performance for real-time analytics
+
+example data for real time analysis nd how mongo stores those data
+- User interactions (likes, comments, shares) stored as documents
+- Each document can contain nested data for user details and post information
+{
+    userId: "12345",
+    postId: "67890",
+    interactions: {
+        likes: 100,
+        comments: 50,
+        shares: 20
+    },
+    archieve : true,
+    visible : false,
+    timestamp: ISODate("2024-06-01T12:00:00Z")
+}
+- MongoDB allows for easy querying and aggregation of this data for real-time insights
+
+
+
+other industry aspects of mongodb
+- E-commerce: product catalogs, customer data, order management
+- Healthcare: patient records, medical research data
+- IoT: sensor data, device management
+- Gaming: player profiles, game state management
+
+
+
+syllabus of mongodb
+1. Introduction to MongoDB
+2. Data Modeling and Schema Design
+3. CRUD Operations
+4. Indexing and Performance Optimization
+5. Aggregation Framework
+6. Replication and Sharding
+7. Security and Authentication
+8. Backup and Recovery
+9. MongoDB Atlas and Cloud Services
+10. Real-world Use Cases and Best Practices
+
+
+all key words inbuilt in mongodb
+- BSON (Binary JSON)
+- Document
+- Collection
+- Database
+- CRUD (Create, Read, Update, Delete)
+- Index
+- Aggregation
+- Replication
+- Sharding
+- Load Balancer
+
+
+
+function names used in mongodb compass  
+- find() - used for querying documents in a collection
+- insertOne() - used for inserting a single document into a collection
+- updateOne() - used for updating a single document in a collection
+- deleteOne() - used for deleting a single document from a collection
+- aggregate() - used for performing aggregation operations on a collection
+- createIndex() - used for creating an index on a collection
+- dropIndex() - used for dropping an index from a collection
+- countDocuments() - used for counting the number of documents in a collection
+- distinct() - used for finding distinct values for a specified field in a collection
+- findOne() - used for querying a single document in a collection
+- findOneAndUpdate() - used for finding a single document and updating it in one operation
+- findOneAndDelete() - used for finding a single document and deleting it in one operation
+- findOneAndReplace() - used for finding a single document and replacing it in one operation
+- insertMany() - used for inserting multiple documents into a collection
+- updateMany() - used for updating multiple documents in a collection
+- deleteMany() - used for deleting multiple documents from a collection
+- bulkWrite() - used for performing multiple write operations in a single command
+- count() - used for counting the number of documents in a collection (deprecated, use countDocuments() instead)
+- estimatedDocumentCount() - used for estimating the number of documents in a collection
+- listCollections() - used for listing all collections in a database
+- listDatabases() - used for listing all databases in the MongoDB instance
+- createCollection() - used for creating a new collection in a database
+- dropCollection() - used for dropping a collection from a database
+- createDatabase() - used for creating a new database (not a direct function, databases are created implicitly when collections are created)
+- dropDatabase() - used for dropping a database from the MongoDB instance
+- aggregate() - used for performing aggregation operations on a collection
+- mapReduce() - used for performing map-reduce operations on a collection
+- watch() - used for watching changes to a collection or database in real-time
+- bulkWrite() - used for performing multiple write operations in a single command
+- findOneAndUpdate() - used for finding a single document and updating it in one operation
+- findOneAndDelete() - used for finding a single document and deleting it in one operation
+- findOneAndReplace() - used for finding a single document and replacing it in one operation
+- createIndex() - used for creating an index on a collection
+- dropIndex() - used for dropping an index from a collection
+- listIndexes() - used for listing all indexes on a collection
+- explain() - used for explaining the execution plan of a query
+- aggregate() - used for performing aggregation operations on a collection
+- countDocuments() - used for counting the number of documents in a collection
+- estimatedDocumentCount() - used for estimating the number of documents in a collection
+- distinct() - used for finding distinct values for a specified field in a collection
+- find() - used for querying documents in a collection
+- insertOne() - used for inserting a single document into a collection
+- updateOne() - used for updating a single document in a collection
+- deleteOne() - used for deleting a single document from a collection
+- insertMany() - used for inserting multiple documents into a collection
+- updateMany() - used for updating multiple documents in a collection
+- deleteMany() - used for deleting multiple documents from a collection
+operators used in mongodb compass
+- $eq: Matches values that are equal to a specified value
+- $ne: Matches values that are not equal to a specified value
+- $gt: Matches values that are greater than a specified value
+- $gte: Matches values that are greater than or equal to a specified value
+- $lt: Matches values that are less than a specified value

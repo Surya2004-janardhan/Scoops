@@ -1,0 +1,17 @@
+horizontal scaling vs vertical scaling
+
+horizontal scaling - it scales by adding more machines to the pool of resources, 
+allowing for increased capacity and performance. It is often used in distributed systems 
+and cloud environments.
+
+DAIGRAM  for horizontal scaling:
+[Client] --> [Load Balancer] --> [Server 1]
+                          --> [Server 2]
+                          --> [Server 3]
+
+vertical scaling - it scales by adding more resources (CPU, RAM, storage) to a single machine,
+allowing for increased capacity and performance. It is often used in traditional on-premises
+environments.
+
+DAIGRAM for vertical scaling:
+[Client] --> [Server with increased resources (CPU, RAM, storage)]
