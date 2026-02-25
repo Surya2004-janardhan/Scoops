@@ -46,7 +46,7 @@ const getDataFromCache = async () => {
     // get data from redis cache with key 'posts'
     const data = await client.get("posts");
     if (data) {
-      console.log("Data retrieved from redis cache:", JSON.parse(data));
+    //   console.log("Data retrieved from redis cache:", JSON.parse(data));
       return JSON.parse(data);
     } else {
       console.log("No data found in redis cache");
@@ -61,6 +61,7 @@ const rateLimitingMiddleware = async (req, res, next) => {
   try {
     // prefer explicit IP from body, otherwise use request IP
     const ip = req.body?.ip || req.ip;
+    console.log("Client IP:", ip);
     const currentTime = Date.now();
     const windowSize = 60 * 60 * 1000;
     const maxRequests = 10;
