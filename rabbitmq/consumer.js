@@ -1,12 +1,19 @@
 // rabbitmq consumer
 // connection is established in index.js and we will use that connection to consume messages from the queue we get called from the task endpoint from app server in index.js and we will save that task in the database and then we will update the status of the task to completed after 5 seconds to simulate some work being done
-
-const { connect } = require("./index");
+// inorder to consume this server must be run in a separate process and we will just run the producer in this process and we will call the producer from the task endpoint to produce messages to the queue and then we will consume those messages in the consumer process and we will save those tasks in the database and then we will update the status of the task to completed after 5 seconds to simulate some work being done
+// we will use this as another microserver to consume messages from the queue and save them in the database and then we will update the status of the task to completed after 5 seconds to simulate some work being done
+const express = require("express");
+const connectDB = require("./db").connect;
+const { getChannel } = require("./mq");
 const { Task } = require("./db");
+
+const app = express();
+app.use(express.json());
+const PORT = 3001; // we will run this server on a different port than the producer server
 
 async function consume() {
   try {
-    const channel = await connect();
+    const channel = await getChannel();
     const queue = "tasks";
     await channel.assertQueue(queue, { durable: true });
     console.log(`Waiting for messages in ${queue}...`);
@@ -37,6 +44,14 @@ async function consume() {
   }
 }
 
-module.exports = {
-  consume,
-};
+app.listen(PORT, () => {
+  console.log(`Consumer server is running on port ${PORT}`);
+  connectDB()
+    .then(() => {
+      console.log("Database connected");
+      consume();
+    })
+    .catch((error) => {
+      console.error("Database connection failed", error);
+    });
+});
