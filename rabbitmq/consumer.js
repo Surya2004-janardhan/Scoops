@@ -1,10 +1,11 @@
 // rabbitmq consumer
 // connection is established in index.js and we will use that connection to consume messages from the queue we get called from the task endpoint from app server in index.js and we will save that task in the database and then we will update the status of the task to completed after 5 seconds to simulate some work being done
 // inorder to consume this server must be run in a separate process and we will just run the producer in this process and we will call the producer from the task endpoint to produce messages to the queue and then we will consume those messages in the consumer process and we will save those tasks in the database and then we will update the status of the task to completed after 5 seconds to simulate some work being done
+// const amqp = require("amqplib");
 // we will use this as another microserver to consume messages from the queue and save them in the database and then we will update the status of the task to completed after 5 seconds to simulate some work being done
 const express = require("express");
 const connectDB = require("./db").connect;
-const { getChannel } = require("./mq");
+const  {connect}  = require("./index");
 const { Task } = require("./db");
 
 const app = express();
@@ -13,7 +14,7 @@ const PORT = 3001; // we will run this server on a different port than the produ
 
 async function consume() {
   try {
-    const channel = await getChannel();
+    const channel = await connect();
     const queue = "tasks";
     await channel.assertQueue(queue, { durable: true });
     console.log(`Waiting for messages in ${queue}...`);
