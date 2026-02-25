@@ -6,6 +6,12 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 app.use(express.json());
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+    return res.status(400).json({ message: "Invalid JSON body" });
+  }
+  return next(err);
+});
 
 // create a redis client
 // use redis:// protocol for node-redis
@@ -53,8 +59,8 @@ const getDataFromCache = async () => {
 // lets implement ip rate limiting using redis to limit the number of requests from a single ip address to 100 requests per hour
 const rateLimitingMiddleware = async (req, res, next) => {
   try {
-    // we shd include ip address in header as body to test the rate limiting middleware
-    const ip = req.body.ip;
+    // prefer explicit IP from body, otherwise use request IP
+    const ip = req.body?.ip || req.ip;
     const currentTime = Date.now();
     const windowSize = 60 * 60 * 1000;
     const maxRequests = 10;
