@@ -1,0 +1,70 @@
+# This fill includes basic docker-componse template for backend and frontend services with node js along with python bakend or plain py services and explainas each lines keywords written in the end this file also contains basic 30 most usedd docker commands
+
+version: '3.8' # specify the version of docker-compose
+services: # define the services that will be run in the docker-compose
+  backend: # name of the backend service
+    build: ./backend # specify the build context for the backend service
+    ports: # specify the ports to be exposed for the backend service
+      - "5000:5000" # map port 5000 of the host to port 5000 of the container
+    volumes: # specify the volumes to be mounted for the backend service
+      - ./backend:/app # mount the local backend directory to /app in the container
+    environment: # specify environment variables for the backend service
+      - NODE_ENV=development # set NODE_ENV to development
+
+  frontend: # name of the frontend service
+    build: ./frontend # specify the build context for the frontend service
+    ports: # specify the ports to be exposed for the frontend service
+      - "3000:3000" # map port 3000 of the host to port 3000 of the container
+    volumes: # specify the volumes to be mounted for the frontend service
+      - ./frontend:/app # mount the local frontend directory to /app in the container
+    environment: # specify environment variables for the frontend service
+      - NODE_ENV=development # set NODE_ENV to development
+
+  python-backend: # name of the python backend service
+    build: ./python-backend # specify the build context for the python backend service
+    ports: # specify the ports to be exposed for the python backend service
+      - "8000:8000" # map port 8000 of the host to port 8000 of the container
+    volumes: # specify the volumes to be mounted for the python backend service
+      - ./python-backend:/app # mount the local python-backend directory to /app in the container
+    environment: # specify environment variables for the python backend service
+      - PYTHON_ENV=development # set PYTHON_ENV to development
+
+
+# 30 most used docker commands:
+
+# 1. docker build -t <image_name> . # Build an image from a Dockerfile
+# 2. docker run -d -p <host_port>:<container_port> <image_name> # Run a container from an image
+# 3. docker ps # List running containers
+# 4. docker ps -a # List all containers (including stopped ones)
+# 5. docker stop <container_id> # Stop a running container
+# 6. docker rm <container_id> # Remove a container
+# 7. docker rmi <image_id> # Remove an image
+# 8. docker logs <container_id> # View logs of a container
+# 9. docker exec -it <container_id> bash # Access a running container's shell
+# 10. docker-compose up -d # Start services defined in docker-compose.yml
+# 11. docker-compose down # Stop and remove containers, networks, images created by docker
+# 12. docker-compose logs # View logs of services defined in docker-compose.yml
+# 13. docker-compose ps # List containers for services defined in docker-compose.yml
+# 14. docker-compose build # Build or rebuild services defined in docker-compose.yml
+# 15. docker-compose stop # Stop services defined in docker-compose.yml
+# 16. docker-compose restart # Restart services defined in docker-compose.yml
+# 17. docker-compose exec <service_name> bash # Access a running service's shell defined in docker-compose.yml
+# 18. docker-compose scale <service_name>=<number_of_instances> # Scale a service to a specific number of instances
+# 19. docker-compose logs -f <service_name> # Follow logs of a specific service defined in docker-compose.yml
+# 20. docker-compose config # Validate and view the configuration of docker-compose.yml
+# 21. docker-compose pull # Pull images for services defined in docker-compose.yml
+# 22. docker-compose push # Push images for services defined in docker-compose.yml
+# 23. docker-compose version # Show the version of docker-compose
+# push and pull and other from hub 
+# 24. docker pull <image_name> # Pull an image from a registry
+# 25. docker push <image_name> # Push an image to a registry
+# 26. docker images # List all images
+# 27. docker inspect <container_id> # Display detailed information about a container
+# watch and stats
+# 28. docker stats # Display real-time resource usage of containers
+# 29. docker top <container_id> # Display running processes in a container
+# 30. docker network ls # List all networks
+# watch command to watch changes done in the local reflect and in the container
+# 31. watch -n 1 docker ps # Watch the output of docker ps every 1 second
+# auto modify code in the container when we change in the local code with watch command
+# 32. watch -n 1 docker logs <container_id> # Watch the logs of a container every 1 second

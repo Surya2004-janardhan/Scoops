@@ -1,0 +1,13 @@
+# Basic docker ignore template for nodejs projects. Add more files and folders as needed.
+# .dockerignore
+# Ignore node_modules
+node_modules
+# Ignore logs
+logs
+*.log
+# Ignore environment files
+.env
+# Ignore build files
+dist
+build
+
