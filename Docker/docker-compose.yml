@@ -1,70 +1,177 @@
-# This fill includes basic docker-componse template for backend and frontend services with node js along with python bakend or plain py services and explainas each lines keywords written in the end this file also contains basic 30 most usedd docker commands
+# Docker Compose Template
+# Multi-service setup: Node.js backend, frontend, Python backend
 
-version: '3.8' # specify the version of docker-compose
-services: # define the services that will be run in the docker-compose
-  backend: # name of the backend service
-    build: ./backend # specify the build context for the backend service
-    ports: # specify the ports to be exposed for the backend service
-      - "5000:5000" # map port 5000 of the host to port 5000 of the container
-    volumes: # specify the volumes to be mounted for the backend service
-      - ./backend:/app # mount the local backend directory to /app in the container
-    environment: # specify environment variables for the backend service
-      - NODE_ENV=development # set NODE_ENV to development
+version: '3.8'
 
-  frontend: # name of the frontend service
-    build: ./frontend # specify the build context for the frontend service
-    ports: # specify the ports to be exposed for the frontend service
-      - "3000:3000" # map port 3000 of the host to port 3000 of the container
-    volumes: # specify the volumes to be mounted for the frontend service
-      - ./frontend:/app # mount the local frontend directory to /app in the container
-    environment: # specify environment variables for the frontend service
-      - NODE_ENV=development # set NODE_ENV to development
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - NODE_ENV=development
 
-  python-backend: # name of the python backend service
-    build: ./python-backend # specify the build context for the python backend service
-    ports: # specify the ports to be exposed for the python backend service
-      - "8000:8000" # map port 8000 of the host to port 8000 of the container
-    volumes: # specify the volumes to be mounted for the python backend service
-      - ./python-backend:/app # mount the local python-backend directory to /app in the container
-    environment: # specify environment variables for the python backend service
-      - PYTHON_ENV=development # set PYTHON_ENV to development
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - NODE_ENV=development
 
+  python-backend:
+    build: ./python-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./python-backend:/app
+    environment:
+      - PYTHON_ENV=development
 
-# 30 most used docker commands:
+# ============================================================
+# DOCKER CHEATSHEET - Commands ordered by frequency of use
+# ============================================================
 
-# 1. docker build -t <image_name> . # Build an image from a Dockerfile
-# 2. docker run -d -p <host_port>:<container_port> <image_name> # Run a container from an image
-# 3. docker ps # List running containers
-# 4. docker ps -a # List all containers (including stopped ones)
-# 5. docker stop <container_id> # Stop a running container
-# 6. docker rm <container_id> # Remove a container
-# 7. docker rmi <image_id> # Remove an image
-# 8. docker logs <container_id> # View logs of a container
-# 9. docker exec -it <container_id> bash # Access a running container's shell
-# 10. docker-compose up -d # Start services defined in docker-compose.yml
-# 11. docker-compose down # Stop and remove containers, networks, images created by docker
-# 12. docker-compose logs # View logs of services defined in docker-compose.yml
-# 13. docker-compose ps # List containers for services defined in docker-compose.yml
-# 14. docker-compose build # Build or rebuild services defined in docker-compose.yml
-# 15. docker-compose stop # Stop services defined in docker-compose.yml
-# 16. docker-compose restart # Restart services defined in docker-compose.yml
-# 17. docker-compose exec <service_name> bash # Access a running service's shell defined in docker-compose.yml
-# 18. docker-compose scale <service_name>=<number_of_instances> # Scale a service to a specific number of instances
-# 19. docker-compose logs -f <service_name> # Follow logs of a specific service defined in docker-compose.yml
-# 20. docker-compose config # Validate and view the configuration of docker-compose.yml
-# 21. docker-compose pull # Pull images for services defined in docker-compose.yml
-# 22. docker-compose push # Push images for services defined in docker-compose.yml
-# 23. docker-compose version # Show the version of docker-compose
-# push and pull and other from hub 
-# 24. docker pull <image_name> # Pull an image from a registry
-# 25. docker push <image_name> # Push an image to a registry
-# 26. docker images # List all images
-# 27. docker inspect <container_id> # Display detailed information about a container
-# watch and stats
-# 28. docker stats # Display real-time resource usage of containers
-# 29. docker top <container_id> # Display running processes in a container
-# 30. docker network ls # List all networks
-# watch command to watch changes done in the local reflect and in the container
-# 31. watch -n 1 docker ps # Watch the output of docker ps every 1 second
-# auto modify code in the container when we change in the local code with watch command
-# 32. watch -n 1 docker logs <container_id> # Watch the logs of a container every 1 second
+# ───────────────────────────────────────────────────────────
+# ESSENTIAL (Most Used)
+# ───────────────────────────────────────────────────────────
+
+# Start containers in background
+# docker-compose up -d
+
+# Stop and remove all containers
+# docker-compose down
+
+# View running containers
+# docker ps
+
+# View all containers (including stopped)
+# docker ps -a
+
+# View container logs
+# docker logs <container_id>
+
+# Follow logs in real-time
+# docker logs -f <container_id>
+
+# Stop a running container
+# docker stop <container_id>
+
+# Remove a container
+# docker rm <container_id>
+
+# ───────────────────────────────────────────────────────────
+# BUILDING & RUNNING
+# ───────────────────────────────────────────────────────────
+
+# Build image from Dockerfile
+# docker build -t <image_name> .
+
+# Run container from image
+# docker run -d -p <host_port>:<container_port> <image_name>
+
+# Build all services in docker-compose
+# docker-compose build
+
+# Rebuild without cache
+# docker-compose build --no-cache
+
+# ───────────────────────────────────────────────────────────
+# CONTAINER MANAGEMENT
+# ───────────────────────────────────────────────────────────
+
+# Access container shell
+# docker exec -it <container_id> bash
+
+# Access specific service shell
+# docker-compose exec <service_name> bash
+
+# Restart containers
+# docker-compose restart
+
+# Stop containers
+# docker-compose stop
+
+# Scale a service
+# docker-compose scale <service_name>=<number_of_instances>
+
+# ───────────────────────────────────────────────────────────
+# IMAGES
+# ───────────────────────────────────────────────────────────
+
+# List all images
+# docker images
+
+# Remove an image
+# docker rmi <image_id>
+
+# Pull image from registry
+# docker pull <image_name>
+
+# Push image to registry
+# docker push <image_name>
+
+# ───────────────────────────────────────────────────────────
+# DEBUGGING & MONITORING
+# ───────────────────────────────────────────────────────────
+
+# Real-time resource stats
+# docker stats
+
+# Running processes in container
+# docker top <container_id>
+
+# Detailed container info
+# docker inspect <container_id>
+
+# Validate docker-compose config
+# docker-compose config
+
+# ───────────────────────────────────────────────────────────
+# NETWORKS
+# ───────────────────────────────────────────────────────────
+
+# List networks
+# docker network ls
+
+# Create network
+# docker network create <network_name>
+
+# Remove network
+# docker network rm <network_name>
+
+# ───────────────────────────────────────────────────────────
+# CLEANUP
+# ───────────────────────────────────────────────────────────
+
+# Remove unused images
+# docker image prune
+
+# Remove all unused resources
+# docker system prune
+
+# Remove volumes too
+# docker system prune -a --volumes
+
+# ───────────────────────────────────────────────────────────
+# WATCH COMMANDS (Real-time monitoring)
+# ───────────────────────────────────────────────────────────
+
+# Watch containers every second
+# watch -n 1 docker ps
+
+# Watch logs every second
+# watch -n 1 "docker logs <container_id>"
+
+# ───────────────────────────────────────────────────────────
+# VERSION INFO
+# ───────────────────────────────────────────────────────────
+
+# Docker version
+# docker --version
+
+# Docker Compose version
+# docker-compose version
