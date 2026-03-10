@@ -1,6 +1,6 @@
 # Scoops
 
-*where backend concepts get scooped up and devoured*
+*where concepts get scooped up and devoured*
 
 ---
 
@@ -43,5 +43,6 @@ because we're scooping up knowledge, one confusing concept at a time.
 also ice cream is nice.
 
 ---
+
 
 *happy learning!*
