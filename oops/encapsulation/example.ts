@@ -4,7 +4,20 @@
 
 // Let's create a simple class to demonstrate encapsulation in TypeScript.
 
+
+// nak 72 ppl maths marks - data strcutre - array 
+// nak 72 marks+names+rollnow -data strcuture - array of objects
+
+// { 
+// "marks": number,
+// "name": string,
+// "rollno": number
+// },
+
+
+
 class Person {
+    
     // We declare a private property 'name' which cannot be accessed directly from outside the class.
     private name: string;
 
